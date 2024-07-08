@@ -1,9 +1,51 @@
 var passwordInput = document.getElementById("password-input");
+const submitButton = document.getElementById("submit-button");
+
+const sessionInfo = JSON.parse(localStorage.getItem("sessionInfo"));
+
+document.addEventListener("DOMContentLoaded", () => {
+    if (sessionInfo == null) {
+        alert("You need to be logged to be able to do this!");
+        window.location = "../login"
+    }
+})
+
+const update = async (password) => {
+    const res = await fetch(`http://localhost:8080/user/${sessionInfo.user.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionInfo.token}`
+        },
+        body: JSON.parse({password: password})
+    });
+
+    if (res.status != 200) {
+        alert("Error!");
+        return;
+    }
+
+    const body = await res.json();
+
+    window.location = "../mainPage"
+}
+
+submitButton.addEventListener("click", () => {
+    const newPassword = passwordInput.value;
+
+    let result = verifyPassword(newPassword);
+
+    if (result <= 2) {
+        return;
+    }
+
+    update(newPassword);
+});
 
 passwordInput.addEventListener("keyup", () => {
     const newPassword = passwordInput.value;
 
-    var result = verifyPassword(newPassword);
+    let result = verifyPassword(newPassword);
 
     if (result == 0) 
         {

@@ -9,16 +9,7 @@ main {
     align-items: center;
 }
 
-.content {
-    display: flex;
-    gap: 40px;
-    width: 1300px;
-    max-height: 500px;
-    height: fit-content;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .button-container {
     width: 400px;

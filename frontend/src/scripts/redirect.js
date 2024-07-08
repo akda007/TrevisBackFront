@@ -1,0 +1,1 @@
+window.location = "./src/pages/login"

@@ -4,11 +4,11 @@ console.log(buttons);
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if(button.getAttribute("name") === "register-user") {
-            window.location.href = "registerUser.html";
+            window.location.href = "../userRegister";
         } else if(button.getAttribute("name") === "register-service") {
-            window.location.href = "registerService.html";
+            window.location.href = "../serviceRegister";
         } else if(button.getAttribute("name") === "show-services") {
-            window.location.href = "servicesTable.html";
+            window.location.href = "../servicesTable";
         }
     })
 })

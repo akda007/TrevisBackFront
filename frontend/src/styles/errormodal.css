@@ -9,6 +9,8 @@
     border-radius: 7px;
     color: rgb(204, 59, 59);
     width: fit-content;
+    opacity: 0;
+    transition: 300ms;
 }
 
 .error-modal p {
