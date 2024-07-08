@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Scope;
 import com.trevis.startup.example.impl.DatabaseDepartmentImpl;
 import com.trevis.startup.example.impl.DatabaseServiceImpl;
 import com.trevis.startup.example.impl.DatabaseUserImpl;
-import com.trevis.startup.example.impl.DefaultAuthImpl;
 import com.trevis.startup.example.impl.DefaultPasswordImpl;
-import com.trevis.startup.example.services.AuthService;
 import com.trevis.startup.example.services.DepartmentService;
 import com.trevis.startup.example.services.PasswordService;
 import com.trevis.startup.example.services.ServiceService;
@@ -34,11 +32,6 @@ public class DependenciesConfiguration {
     @Scope("singleton")
     public UserService userService() {
         return new DatabaseUserImpl();
-    }
-    @Bean
-    @Scope("singleton")
-    public AuthService authService(){
-        return new DefaultAuthImpl();
     }
 
     @Bean

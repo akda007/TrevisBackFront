@@ -2,40 +2,21 @@ package com.trevis.startup.example.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
-@Table(name = "DepartmentData")
-public class DepartmentData {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Getter @Setter
+@Entity @Table(name = "DepartmentData")
+public class DepartmentData extends BaseEntity {
 
     @Column(name = "Name")
     private String name;
 
+
     public DepartmentData() {}
 
-    public DepartmentData(String name) {// contrutor departamento
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public DepartmentData(String name) {
         this.name = name;
     }
 }

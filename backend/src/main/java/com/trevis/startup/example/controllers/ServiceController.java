@@ -76,7 +76,7 @@ public class ServiceController {
 
         service.setName(serviceData.name());
         service.setDescription(serviceData.description());
-        service.setInternal(serviceData.internal());
+        service.setIntern(serviceData.internal());
 
         serviceService.add(service);
 
