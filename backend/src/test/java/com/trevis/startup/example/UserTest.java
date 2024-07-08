@@ -5,18 +5,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-// import com.trevis.startup.example.model.UserRole;
-import com.trevis.startup.example.services.DepartmentService;
-import com.trevis.startup.example.services.UserService;
+import com.trevis.startup.example.interfaces.DepartmentService;
+import com.trevis.startup.example.interfaces.UserService;
 
 @SpringBootTest
 public class UserTest {
     
     @Autowired
-    UserService userService;
+    UserDataService userService;
     
     @Autowired
-    DepartmentService departmentService;
+    DepartmentDataServiceDefault departmentService;
 
     @Test
 	void userTest() {

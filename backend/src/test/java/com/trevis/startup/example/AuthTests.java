@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.trevis.startup.example.services.AuthService;
+import com.trevis.startup.example.interfaces.AuthService;
 
 @SpringBootTest
 class AuthTests {
 
 	@Autowired
-	AuthService authService;
+	LoginService authService;
 
 	@Test
 	void authTest() {

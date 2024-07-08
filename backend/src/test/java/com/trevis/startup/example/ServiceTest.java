@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.trevis.startup.example.model.ServiceData;
-import com.trevis.startup.example.services.ServiceService;
+import com.trevis.startup.example.entities.ServiceData;
+import com.trevis.startup.example.interfaces.ServiceService;
 
 @SpringBootTest
 public class ServiceTest {
     
     @Autowired
-    ServiceService serviceService;
+    ServiceDataService serviceService;
 
     @Test
 	void serviceTest() {
