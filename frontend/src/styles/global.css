@@ -1,0 +1,22 @@
+:root {
+    --white-blue: #e9f0ff;
+    --grey-blue: #4364aa;
+    --default-blue: #79A3FF;
+    --icons-green: #67df81;
+}
+
+* {
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--white-blue);
+    height: 90vh;
+}

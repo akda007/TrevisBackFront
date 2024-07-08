@@ -1,0 +1,30 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+.description p {
+    margin: 0;
+}
+
+.progressbar-container {
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress {
+    width: 500px;
+}
+
+.progress-bar {
+    background-color: var(--default-red);
+}
+
+#password-strength {
+    /* font-weight: 400; */
+    font-size: 1.5vh;
+}

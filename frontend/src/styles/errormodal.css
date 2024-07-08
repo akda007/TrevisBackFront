@@ -1,0 +1,16 @@
+.error-modal {
+    position: fixed;
+    top: 30px;
+    padding: 10px;
+    background-color: rgb(255, 152, 152);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    color: rgb(204, 59, 59);
+    width: fit-content;
+}
+
+.error-modal p {
+    margin: 0;
+}
