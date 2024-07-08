@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.trevis.startup.example.services.DepartmentService;
+import com.trevis.startup.example.interfaces.DepartmentService;
 
 @SpringBootTest
 public class DepartmentTest {
     
     @Autowired
-    DepartmentService departmentService;
+    DepartmentDataServiceDefault departmentService;
 
     @Test
 	void departmentTest() {
