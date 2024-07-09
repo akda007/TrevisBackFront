@@ -12,35 +12,30 @@ function showError(text) {
     }, 4000);
 }
 
-const userLogin = (login, pass) => {
+const userLogin = async (login, pass) => {
     const reqBody = {
         username: login,
-        passord: pass
+        password: pass
     }
 
-    let res = undefined;
-
-    fetch("http://localhost:8080/login", {
+    let res = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(reqBody)
-    }).then(x => {
-        return x.json()
-    }).then(x => {
-        res = x;
-    }).catch(x => {
-        showError(x.message)
-    });
+    })
 
-    if (res == undefined) {
+    if (!res.ok) {
+        showError("Unable to finish request!");
         return;
     }
 
-    localStorage.setItem("sessionInfo", JSON.stringify(res));
+    let data = await res.json();
 
-    if (res.user.firstLogin == true) {
+    localStorage.setItem("sessionInfo", JSON.stringify(data));
+
+    if (data.user.firstLogin) {
         window.location = "../updatePassword"
     } else {
         window.location = "../mainPage"

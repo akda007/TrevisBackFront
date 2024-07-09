@@ -1,23 +1,23 @@
 var passwordInput = document.getElementById("password-input");
 const submitButton = document.getElementById("submit-button");
 
-const sessionInfo = JSON.parse(localStorage.getItem("sessionInfo"));
+const session = JSON.parse(localStorage.getItem("sessionInfo"));
 
 document.addEventListener("DOMContentLoaded", () => {
-    if (sessionInfo == null) {
+    if (session == null) {
         alert("You need to be logged to be able to do this!");
         window.location = "../login"
     }
 })
 
 const update = async (password) => {
-    const res = await fetch(`http://localhost:8080/user/${sessionInfo.user.id}`, {
+    const res = await fetch(`http://localhost:8080/user/${session.user.id}`, {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${sessionInfo.token}`
+            "Authorization": `Bearer ${session.token}`
         },
-        body: JSON.parse({password: password})
+        body: JSON.stringify({password: password})
     });
 
     if (res.status != 200) {

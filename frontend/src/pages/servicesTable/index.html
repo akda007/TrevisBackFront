@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- font: roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -24,15 +24,64 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+      }
+      </style>
 
     <link rel="stylesheet" href="../../styles/global.css" />
     <link rel="stylesheet" href="../../styles/menubar.css" />
     <link rel="stylesheet" href="../../styles/servicesTable.css" />
     
-    <script defer src="../scripts/menuButton.js"></script>
+    <script defer src="../mainPage/js/menuButton.js"></script>
+    <script defer src="./js/controller.js"></script>
     <title>Services</title>
   </head>
   <body>
+  <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalTitle">Edit Service</h5>
+            <button type="button" class="close btn d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Service name" aria-label="Service name" aria-describedby="basic-addon1" id="edit-name">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon2">Description</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Service description" aria-label="Service description" aria-describedby="basic-addon2" id="edit-desc">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">Intern</span>
+              </div>
+              <input class="ms-3" type="checkbox" aria-label="Intern" aria-describedby="basic-addon3" id="edit-intern" aria-label="Checkbox for following text input">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="edit-submit">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <header>
       <nav>
         <div id="home">
@@ -50,75 +99,26 @@
       </nav>
     </header>
     <main>
+      
       <div id="content">
         <div id="table-header">
           <h3>Services</h3>
           <div id="search-container">
             <p>Search</p>
-            <input type="text" />
+            <input type="text" id="search-input"/>
           </div>
         </div>
+
+
         <div class="accordion-container">
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Service #1
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p><strong>Name</strong></p>
-                  <p>Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum reiciendis nemo perferendis amet consequuntur, cum beatae? Non aliquid sint nulla fugiat quasi labore officiis, doloremque quisquam harum suscipit nobis maxime?</p>
-                  <p><strong>Manager</strong></p>
-                  <p>Manager Department</p>
-                  <img class="edit-buttons" src="../../resources/images/edit.png" alt="" name="edit">
-                    <img class="edit-buttons" src="../../resources/images/trash.png" alt="" name="delete">
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Service #2
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p><strong>Name</strong></p>
-                  <p>Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum reiciendis nemo perferendis amet consequuntur, cum beatae? Non aliquid sint nulla fugiat quasi labore officiis, doloremque quisquam harum suscipit nobis maxime?</p>
-                  <p><strong>Manager</strong></p>
-                  <p>Manager Department</p>
-                  <img class="edit-buttons" src="../../resources/images/edit.png" alt="" name="edit">
-                    <img class="edit-buttons" src="../../resources/images/trash.png" alt="" name="delete">
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Service #3
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p><strong>Name</strong></p>
-                  <p>Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum reiciendis nemo perferendis amet consequuntur, cum beatae? Non aliquid sint nulla fugiat quasi labore officiis, doloremque quisquam harum suscipit nobis maxime?</p>
-                  <p><strong>Manager</strong></p>
-                  <p>Manager Department</p>
-                  <div class="edit-buttons">
-                    <img class="edit-buttons" src="../../resources/images/edit.png" alt="" name="edit">
-                    <img class="edit-buttons" src="../../resources/images/trash.png" alt="" name="delete">
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="accordion" id="dataList">
           </div>
         </div>
 		  <div id="table-footer">
-			<div id="pagination-buttons">
-				<button><img src="../../resources/images/left.png" alt="" /></button>
-				<button><img src="../../resources/images/right.png" alt="" /></button>
+			<div id="pagination-buttons" class="d-flex justify-content-center align-items-center gap-3">
+				<button id="previousPage"><img src="../../resources/images/left.png" alt="" /></button>
+        <p class="m-0" style="font-size: large;" id="currentPage">1</p>
+				<button id="nextPage"><img src="../../resources/images/right.png" alt="" /></button>
 			  </div>
 		  </div>
         </div>
@@ -133,24 +133,8 @@
         <a href="login.html">LogOut</a>
     </div>
 
-    <!-- DELETE MODEL -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- DELETE MODAL -->
+    
     </main>
   </body>
 </html>

@@ -8,21 +8,21 @@ const signup = async (username, department, role) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authentication": `Bearer ${session.token}`
+            "Authorization": `Bearer ${session.token}`
         },
         body: JSON.stringify({
             username: username,
-            department: department,
+            departmentId: department,
             role: role
         })
     })
 
-    if (res.status != 200) {
+    if (!res.ok) {
         alert("Error!");
         return;
     }
 
-    window.location = "../login"
+    window.location = "../mainPage"
 
 }
 
@@ -37,7 +37,7 @@ const loadDepartments = async () => {
 
     const body = await res.json();
 
-    Array.from(body.data).forEach(department => {
+    Array.from(body).forEach(department => {
         inputDepartment.insertAdjacentHTML('beforeend',
             `<option value="${department.id}">${department.name}</option>`
         )
@@ -49,5 +49,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("submit_bt").addEventListener("click", () =>  {
-    signup(inputUsername.value, inputDepartment.value, inputRole.value);
+    signup(inputUsername.value, Number(inputDepartment.value), Number(inputRole.value));
 });
