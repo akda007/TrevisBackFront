@@ -1,5 +1,6 @@
 package com.trevis.startup.filters;
 
+import com.trevis.startup.enums.UserRole;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,7 +39,7 @@ public class ValidateTokenFilter extends OncePerRequestFilter {
                 Claims claims = jwtTokenManager.extractClaims(token);
 
                 userSession.setId(Long.parseLong(claims.getId()));
-                userSession.setAdmin(claims.get("admin", Boolean.class));
+                userSession.setRole(claims.get("role", UserRole.class));
             }
             catch (RuntimeException e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

@@ -4,10 +4,10 @@ import com.trevis.startup.entities.UserData;
 
 public class UserDataResponse {
     
-    protected String username;
-    protected Boolean firstLogin;
-    protected Long departmentId;
-    protected String role;
+    public String username;
+    public Boolean firstLogin;
+    public Long departmentId;
+    public String role;
 
     public UserDataResponse(UserData user) {
         this.username = user.getUsername();

@@ -1,5 +1,7 @@
 package com.trevis.startup.config;
 
+import com.trevis.startup.interfaces.*;
+import com.trevis.startup.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -8,14 +10,6 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.trevis.startup.interfaces.DepartmentDataService;
-import com.trevis.startup.interfaces.JwtTokenManager;
-import com.trevis.startup.interfaces.ServiceDataService;
-import com.trevis.startup.interfaces.UserDataService;
-import com.trevis.startup.services.DepartmentDataServiceDefault;
-import com.trevis.startup.services.JwtTokenManagerService;
-import com.trevis.startup.services.ServiceDataServiceDefault;
-import com.trevis.startup.services.UserDataServiceDefault;
 import com.trevis.startup.sessions.UserSession;
 
 
@@ -29,6 +23,9 @@ public class DependenciesConfiguration {
     protected JwtTokenManager jwtTokenManager() {
         return new JwtTokenManagerService();
     }
+
+    @Bean @Scope() @Primary
+    protected LoginService loginService() { return new LoginServiceDefault(); }
 
     @Bean @Scope() @Primary
     protected UserDataService userDataService() { return new UserDataServiceDefault(); }

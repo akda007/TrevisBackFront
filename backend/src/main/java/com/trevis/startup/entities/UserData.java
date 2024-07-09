@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity @Table(name="UserData")
 public class UserData extends BaseEntity {
     
-    @Column(name = "Login")
+    @Column(name = "Login", unique = true)
     private String username;
 
     @Column(name = "FirstLogin")
@@ -37,5 +37,6 @@ public class UserData extends BaseEntity {
     public UserData(String username, UserRole role) {
         this.username = username;
         this.role = role;
+        this.firstLogin = true;
     }
 }

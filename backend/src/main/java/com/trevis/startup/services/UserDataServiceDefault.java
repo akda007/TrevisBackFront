@@ -62,6 +62,7 @@ public class UserDataServiceDefault implements UserDataService {
         if(query.isEmpty()) throw new NotFoundException();
 
         UserData user = query.get();
+        user.setFirstLogin(false);
 
         if(payload.getUsername() != null) user.setUsername(payload.getUsername().replaceAll("//s", ""));
         if(payload.getPassword() != null) user.setPassword(bCryptPasswordEncoder.encode(payload.getPassword()));
