@@ -36,4 +36,17 @@ public class ServiceDataServiceMock implements ServiceDataService {
                 .filter(x -> x.getName().contains(query))
                 .toList();
     }
+
+    @Override
+    public ServiceData getById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+    }
+
+    @Override
+    public void delete(ServiceData serviceData) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
 }

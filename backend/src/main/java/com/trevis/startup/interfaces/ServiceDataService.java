@@ -7,5 +7,7 @@ import com.trevis.startup.entities.ServiceData;
 
 public interface ServiceDataService {
     ServiceData create(ServiceDataCreationPayload payload);
+    ServiceData getById(Long id);
     List<ServiceData> get(String query, Integer pageIndex, Integer pageSize);
+    void delete(ServiceData serviceData);
 }

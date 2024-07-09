@@ -48,7 +48,21 @@ public class ServiceDataServiceDefault implements ServiceDataService {
     }
 
     @Override
+    public ServiceData getById(Long id) {
+
+        var query = serviceRepository.findById(id);
+        if(query.isEmpty()) throw new NotFoundException();
+
+        return query.get();
+    }
+
+    @Override
     public List<ServiceData> get(String query, Integer pageIndex, Integer pageSize) {
         return servicePaginationRepository.findByNameContaining(query, PageRequest.of(pageIndex - 1, pageSize));
+    }
+
+    @Override
+    public void delete(ServiceData serviceData) {
+        serviceRepository.delete(serviceData);
     }
 }
