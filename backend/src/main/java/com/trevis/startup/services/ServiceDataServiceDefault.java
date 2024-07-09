@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 import com.trevis.startup.dto.service.ServiceDataCreationPayload;
+import com.trevis.startup.dto.service.ServiceDataUpdatePayload;
 import com.trevis.startup.entities.ServiceData;
 import com.trevis.startup.exceptions.NotFoundException;
 import com.trevis.startup.interfaces.ServiceDataService;
@@ -64,5 +65,17 @@ public class ServiceDataServiceDefault implements ServiceDataService {
     @Override
     public void delete(ServiceData serviceData) {
         serviceRepository.delete(serviceData);
+    }
+
+    @Override
+    public ServiceData update(Long id, ServiceDataUpdatePayload payload) {
+        
+        ServiceData serviceData = getById(id);
+
+        if(payload.getIntern() != null) serviceData.setIntern(payload.getIntern());
+        if(payload.getName() != null) serviceData.setName(payload.getName());
+        if(payload.getDescription() != null) serviceData.setDescription(payload.getDescription());
+    
+        return serviceRepository.save(serviceData);
     }
 }

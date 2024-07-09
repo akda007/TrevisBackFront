@@ -1,6 +1,7 @@
 package com.trevis.startup.mocks;
 
 import com.trevis.startup.dto.service.ServiceDataCreationPayload;
+import com.trevis.startup.dto.service.ServiceDataUpdatePayload;
 import com.trevis.startup.entities.ServiceData;
 import com.trevis.startup.interfaces.ServiceDataService;
 import com.trevis.startup.interfaces.UserDataService;
@@ -47,6 +48,12 @@ public class ServiceDataServiceMock implements ServiceDataService {
     public void delete(ServiceData serviceData) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public ServiceData update(Long id, ServiceDataUpdatePayload payload) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
 }
