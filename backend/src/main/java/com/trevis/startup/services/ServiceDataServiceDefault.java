@@ -72,9 +72,9 @@ public class ServiceDataServiceDefault implements ServiceDataService {
         
         ServiceData serviceData = getById(id);
 
-        if(payload.getIntern() != null) serviceData.setIntern(payload.getIntern());
-        if(payload.getName() != null) serviceData.setName(payload.getName());
-        if(payload.getDescription() != null) serviceData.setDescription(payload.getDescription());
+        serviceData.setIntern(payload.getIntern());
+        serviceData.setName(payload.getName());
+        serviceData.setDescription(payload.getDescription());
     
         return serviceRepository.save(serviceData);
     }

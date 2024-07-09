@@ -65,7 +65,7 @@ public class ServiceController {
         return ResponseEntity.ok(new ServiceDataResponse(serviceDataService.getById(id)));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     protected ResponseEntity<ServiceDataResponse> updateById(@Valid @RequestBody ServiceDataUpdatePayload body, @PathVariable Long id) {
         userSession.verifyToken();
 
