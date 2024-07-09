@@ -54,7 +54,7 @@ public class ServiceController {
             .map(x -> new ServiceDataResponse(x))
             .toList();
         
-        Long totalPages = serviceDataService.countServices() / size;
+        Long totalPages =  Math.round(Math.ceil( (double)serviceDataService.countServices() / (double)size ));
         
         return ResponseEntity.ok(new PaginatedListResponse<ServiceDataResponse>(services, (long)page, totalPages));
     }
