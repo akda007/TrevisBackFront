@@ -7,6 +7,7 @@ import com.trevis.startup.dto.service.ServiceDataUpdatePayload;
 import com.trevis.startup.entities.ServiceData;
 
 public interface ServiceDataService {
+    Long countServices();
     ServiceData create(ServiceDataCreationPayload payload);
     ServiceData getById(Long id);
     List<ServiceData> get(String query, Integer pageIndex, Integer pageSize);

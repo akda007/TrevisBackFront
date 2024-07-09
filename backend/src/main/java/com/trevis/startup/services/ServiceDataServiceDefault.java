@@ -78,4 +78,9 @@ public class ServiceDataServiceDefault implements ServiceDataService {
     
         return serviceRepository.save(serviceData);
     }
+
+    @Override
+    public Long countServices() {
+        return serviceRepository.count();
+    }
 }

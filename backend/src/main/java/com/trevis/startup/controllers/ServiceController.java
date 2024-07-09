@@ -1,7 +1,6 @@
 package com.trevis.startup.controllers;
 
-import java.util.List;
-
+import com.trevis.startup.dto.PaginatedListResponse;
 import com.trevis.startup.dto.service.ServiceDataCreationPayload;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class ServiceController {
     }
     
     @GetMapping
-    protected ResponseEntity<List<ServiceDataResponse>> getAll(
+    protected ResponseEntity<PaginatedListResponse<ServiceDataResponse>> getAll(
             @RequestParam(required = false) String query,
             @RequestParam Integer page,
             @RequestParam Integer size
@@ -55,7 +54,9 @@ public class ServiceController {
             .map(x -> new ServiceDataResponse(x))
             .toList();
         
-        return ResponseEntity.ok(services);
+        Long totalPages = serviceDataService.countServices() / size;
+        
+        return ResponseEntity.ok(new PaginatedListResponse<ServiceDataResponse>(services, (long)page, totalPages));
     }
 
     @GetMapping("/{id}")

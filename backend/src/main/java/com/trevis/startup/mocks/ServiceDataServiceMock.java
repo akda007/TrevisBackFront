@@ -56,4 +56,8 @@ public class ServiceDataServiceMock implements ServiceDataService {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+    @Override
+    public Long countServices() {
+        return (long) serviceDataList.size();
+    }
 }
