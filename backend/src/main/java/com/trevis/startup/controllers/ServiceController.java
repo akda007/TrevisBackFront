@@ -76,7 +76,7 @@ public class ServiceController {
         return ResponseEntity.ok(new ServiceDataResponse( serviceDataService.update(id, body) ));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     protected ResponseEntity<?> deleteById(@PathVariable Long id) {
         userSession.verifyToken();
 
