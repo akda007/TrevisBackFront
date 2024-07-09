@@ -1,6 +1,7 @@
 package com.trevis.startup;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -41,6 +42,12 @@ public class UserDataTest {
     protected void testUserUpdate() {
         var payload = new UserDataUpdatePayload("muryloNew", null, null, "Password1!");
 
-        // assertNot(NotFoundException.class, () -> userDataService.getById(99999L));
+        assertDoesNotThrow(() -> userDataService.updateUser(1L, payload));
+
+        var user = userDataService.getById(1L);
+        assertEquals("muryloNew", user.getUsername());
+        assertEquals("muryloNew", user.getUsername());
+        assertEquals("muryloNew", user.getUsername());
+        assertEquals("muryloNew", user.getUsername());
     }
 }

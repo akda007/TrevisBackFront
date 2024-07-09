@@ -3,7 +3,6 @@ package com.trevis.startup.controllers;
 import java.util.List;
 
 import com.trevis.startup.dto.service.ServiceDataCreationPayload;
-import com.trevis.startup.sessions.UserSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +17,7 @@ public class ServiceController {
     @Autowired
     ServiceDataService serviceDataService;
 
-    @Autowired
-    private UserSession userSession;
-
-
+    
     @GetMapping
     protected ResponseEntity<List<ServiceDataResponse>> getAll(
             @RequestParam(required = false) String query,
@@ -39,8 +35,6 @@ public class ServiceController {
 
     @PostMapping
     protected ResponseEntity<ServiceDataResponse> create(@Valid @RequestBody ServiceDataCreationPayload body) {
-        userSession.verifyAdmin();
-
         return ResponseEntity.status(201).body(new ServiceDataResponse( serviceDataService.create(body) ));
     }
 }
