@@ -2,12 +2,12 @@ package com.trevis.startup.controllers;
 
 import java.util.List;
 
+import com.trevis.startup.dto.service.ServiceDataCreationPayload;
+import com.trevis.startup.sessions.UserSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.trevis.startup.dto.service.ServiceDataResponse;
 import com.trevis.startup.interfaces.ServiceDataService;
@@ -18,14 +18,29 @@ public class ServiceController {
     @Autowired
     ServiceDataService serviceDataService;
 
+    @Autowired
+    private UserSession userSession;
+
+
     @GetMapping
-    protected ResponseEntity<List<ServiceDataResponse>> getAll(@RequestParam String query, @RequestParam Integer page, @RequestParam Integer size) {
+    protected ResponseEntity<List<ServiceDataResponse>> getAll(
+            @RequestParam(required = false) String query,
+            @RequestParam Integer page,
+            @RequestParam Integer size
+    ) {
         var services = serviceDataService
-            .get(query, page, size)
+            .get(query != null ? query : "", page, size)
             .stream()
             .map(x -> new ServiceDataResponse(x))
             .toList();
         
         return ResponseEntity.ok(services);
+    }
+
+    @PostMapping
+    protected ResponseEntity<ServiceDataResponse> create(@Valid @RequestBody ServiceDataCreationPayload body) {
+        userSession.verifyAdmin();
+
+        return ResponseEntity.status(201).body(new ServiceDataResponse( serviceDataService.create(body) ));
     }
 }

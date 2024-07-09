@@ -4,13 +4,15 @@ import com.trevis.startup.dto.user.UserDataResponse;
 import com.trevis.startup.entities.ServiceData;
 
 public class ServiceDataResponse {
-    
-    protected String name;
-    protected String description;
-    protected Boolean intern;
-    protected UserDataResponse manager;
+
+    public Long id;
+    public String name;
+    public String description;
+    public Boolean intern;
+    public UserDataResponse manager;
 
     public ServiceDataResponse(ServiceData serviceData) {
+        this.id = serviceData.getId();
         this.name = serviceData.getName();
         this.description = serviceData.getDescription();
         this.intern = serviceData.getIntern();

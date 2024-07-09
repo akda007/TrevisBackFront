@@ -39,14 +39,10 @@ public class ExceptionResponseHandler {
                 .body(new Message(ex.getMessage()));
     }
 
-    @ExceptionHandler({ DataIntegrityViolationException.class })
+    @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<Message> handleDataIntegrityViolation(Exception ex, HttpServletRequest request) {
         return ResponseEntity
-                .status(400)
-                .body(new Message(
-                        "Something went wrong with your request." +
-                        "Maybe you tried creating something that already exists in out database" +
-                        "or your request does not fit our requirements."
-                ));
+                .status(409)
+                .body(new Message("The parameters inside the request do not fit the database."));
     }
 }

@@ -33,6 +33,7 @@ public class UserDataServiceDefault implements UserDataService {
 
         UserData user = payload.toEntity();
         user.setDepartment(query.get());
+        user.setPassword(bCryptPasswordEncoder.encode("@Bosch123"));
 
         return userRepository.save(user);
     }

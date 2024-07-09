@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ServicePaginationRepository extends PagingAndSortingRepository<ServiceData, Long> {
-    List<ServiceData> findByName(String name, Pageable pageable);
+    List<ServiceData> findByNameContaining(String name, Pageable pageable);
 }

@@ -39,7 +39,7 @@ public class ValidateTokenFilter extends OncePerRequestFilter {
                 Claims claims = jwtTokenManager.extractClaims(token);
 
                 userSession.setId(Long.parseLong(claims.getId()));
-                userSession.setRole(claims.get("role", UserRole.class));
+                userSession.setRole(UserRole.intToRole(claims.get("role", Integer.class)));
             }
             catch (RuntimeException e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

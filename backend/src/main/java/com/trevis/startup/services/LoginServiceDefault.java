@@ -1,6 +1,7 @@
 package com.trevis.startup.services;
 
 import com.trevis.startup.entities.UserData;
+import com.trevis.startup.enums.UserRole;
 import com.trevis.startup.exceptions.UnauthorizedException;
 import com.trevis.startup.interfaces.JwtTokenManager;
 import com.trevis.startup.interfaces.LoginService;
@@ -32,7 +33,7 @@ public class LoginServiceDefault implements LoginService {
 
         if(bCryptPasswordEncoder.matches(password, userData.getPassword())) {
             Map<String, Object> claims = new HashMap<>();
-            claims.put("role", userData.getRole());
+            claims.put("role", UserRole.roleToInt(userData.getRole()));
 
             return jwtTokenManager.buildToken(claims, userData.getUsername(), userData.getId());
         }
