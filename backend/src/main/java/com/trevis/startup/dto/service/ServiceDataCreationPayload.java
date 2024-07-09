@@ -4,7 +4,6 @@ import com.trevis.startup.entities.ServiceData;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,10 +23,6 @@ public class ServiceDataCreationPayload {
 
     @NotNull
     private Boolean intern;
-
-    @NotNull
-    @Positive
-    private Long managerId;
 
 
     public ServiceData toEntity() {

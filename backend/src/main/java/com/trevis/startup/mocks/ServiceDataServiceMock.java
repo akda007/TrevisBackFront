@@ -23,7 +23,6 @@ public class ServiceDataServiceMock implements ServiceDataService {
     public ServiceData create(ServiceDataCreationPayload payload) {
         ServiceData serviceData = payload.toEntity();
         serviceData.setId(++currentId);
-        serviceData.setManager(userDataService.getById(payload.getManagerId()));
 
         serviceDataList.add(serviceData);
         return serviceData;
