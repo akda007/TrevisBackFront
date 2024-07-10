@@ -1,5 +1,4 @@
 var buttons = document.querySelectorAll("div.button-container");
-console.log(buttons);
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {

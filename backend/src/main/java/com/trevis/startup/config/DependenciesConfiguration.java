@@ -1,9 +1,6 @@
 package com.trevis.startup.config;
 
 import com.trevis.startup.interfaces.*;
-import com.trevis.startup.mocks.DepartmentDataServiceMock;
-import com.trevis.startup.mocks.ServiceDataServiceMock;
-import com.trevis.startup.mocks.UserDataServiceMock;
 import com.trevis.startup.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,13 +28,13 @@ public class DependenciesConfiguration {
     protected LoginService loginService() { return new LoginServiceDefault(); }
 
     @Bean @Scope() @Primary
-    protected UserDataService userDataService() { return new UserDataServiceMock(); }
+    protected UserDataService userDataService() { return new UserDataServiceDefault(); }
 
     @Bean @Scope() @Primary
-    protected DepartmentDataService departmentDataService() { return new DepartmentDataServiceMock(); }
+    protected DepartmentDataService departmentDataService() { return new DepartmentDataServiceDefault(); }
 
     @Bean @Scope() @Primary
-    protected ServiceDataService serviceDataService() { return new ServiceDataServiceMock(); }
+    protected ServiceDataService serviceDataService() { return new ServiceDataServiceDefault(); }
 
     @Bean @Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS) @Primary
     protected UserSession userSession() { return new UserSession(); }

@@ -1,0 +1,21 @@
+.input-container {
+    position: relative;
+}
+
+.input-container img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 5px;
+
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+
+    cursor: pointer;
+}
+
+.input-container img:hover {
+    transform: scale(1.1);    
+}

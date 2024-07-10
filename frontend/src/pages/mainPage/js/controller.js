@@ -7,7 +7,7 @@ const signoutBt = document.getElementById("signoutButton");
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    username1.innerText = sessionInfo.user.name;
-    username2.innerText = sessionInfo.user.name;
+    username1.innerText = sessionInfo.user.username;
+    username2.innerText = sessionInfo.user.username;
 });
 

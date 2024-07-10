@@ -13,17 +13,27 @@ let query = "";
 let firstElement = true;
 let editId;
 
+
+const username1 = document.getElementById("username1");
+const username2 = document.getElementById("username2");
+
+document.addEventListener("DOMContentLoaded", () => {
+    username1.innerText = session.user.username;
+    username2.innerText = session.user.username;
+});
+
+
 const insertService = (service) => {
     const elementId = `collapse${service.id}`
 
     dataList.insertAdjacentHTML("beforeend", 
         `<div class="accordion-item" item-id="${service.id}" item-name="${service.name}" item-desc="${service.description}" item-intern="${service.intern}">
             <h2 class="accordion-header">
-            <button class="accordion-button ${firstElement ? "" : "collapsed"}" type="button" data-bs-toggle="collapse" data-bs-target="#${elementId}" aria-expanded="${firstElement}" aria-controls="${elementId}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${elementId}" aria-expanded="false" aria-controls="${elementId}">
                 ${service.name}
             </button>
             </h2>
-            <div id="${elementId}" class="accordion-collapse collapse ${firstElement ? "show" : ""}" data-bs-parent="#dataList">
+            <div id="${elementId}" class="accordion-collapse collapse" data-bs-parent="#dataList">
             <div class="accordion-body">
                 <p><strong>${service.name}</strong></p>
                 <p>Description: ${service.description}</p>
@@ -65,7 +75,18 @@ const loadServiceList = async (page, query) => {
 
     maxPage = body.totalPages;
 
-    currentPage.innerHTML = `1..${page}..${maxPage}`;
+    currentPage.innerHTML = `
+        ${page-1 > 1 ? "<button class=\"page-number\">1</button> ..." : ""}
+        ${page === 1 ? "" : "<button class=\"page-number\">"+(page-1)+"</button>"}
+        <button class=\"page-number\"><b>${page}</b></button>
+        ${page === maxPage ? "" : "<button class=\"page-number\">"+(page+1)+"</button>"}
+        ${page+1 < maxPage ? "... <button class=\"page-number\">" + maxPage + "</button>" : ""}
+    `
+
+    document.querySelectorAll(".page-number").forEach(button => button.addEventListener("click", () => {
+        page = Number(button.innerHTML)
+        loadServiceList(page === 0 ? ++page : page, query)
+    }))
 
     Array.from(body.data).forEach(service => {
         insertService(service)

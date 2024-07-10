@@ -20,9 +20,11 @@
     <!-- Toasts-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script  src="../../scripts/infoToasts.js"></script>
+    <script  src="../../scripts/infoToasts.js" type="module"></script>
 
-    <script defer src="./js/controller.js"></script>
+    <script defer src="./js/controller.js" type="module"></script>
+
+    <link rel="stylesheet" href="./style.css">
     <title>Login</title>
   </head>
   <body>
@@ -41,7 +43,8 @@
             </div>
             <div class="input-container">
                 <p>Password</p>
-                <input class="data-input" type="text" placeholder="Your password here" name="password" id="input_password">
+                <input class="data-input" type="password" placeholder="Your password here" name="password" id="input_password">
+                <img src="../../resources/images/eye.png">
                 <a href="passwordUpdate.html">Forgot your password?</a>
             </div>
             <button id="login_button">Enter</button>

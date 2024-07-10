@@ -1,3 +1,5 @@
+import { showError, showMessage } from "../../../scripts/infoToasts.js";
+
 const session = JSON.parse(localStorage.getItem("sessionInfo"));
 
 const nameInput = document.querySelector("#username")
@@ -20,17 +22,16 @@ const register = async (name, intern, desc) => {
             intern
         })
     })
-    
     if (!res.ok) { 
-        alert("Error!");
+        showError("Something went wrong")
         return;
     }
-
-    alert("Serviço criado com sucesso!");
-
-    window.location = '../mainPage'
+    showMessage("Service created!")
 }
 
 submitBt.addEventListener("click", () => {
     register(nameInput.value, internInput.checked, descriptionInput.value)
+    nameInput.value = ""
+    descriptionInput.value = ""
+    nameInput.focus()
 });
