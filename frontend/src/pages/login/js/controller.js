@@ -3,14 +3,6 @@ const inputPassword = document.getElementById("input_password");
 const loginButton = document.getElementById("login_button");
 const errorMessage = document.querySelector(".error-modal")
 
-function showError(text) {
-    errorMessage.innerHTML = `<p>${text}</p>`;
-    errorMessage.style.opacity = "100%";
-
-    setTimeout(() => {
-        errorMessage.style.opacity = "0";
-    }, 4000);
-}
 
 const userLogin = async (login, pass) => {
     const reqBody = {
@@ -24,10 +16,13 @@ const userLogin = async (login, pass) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(reqBody)
+    }).catch( x => {
+        showError(null);
+        return
     })
 
     if (!res.ok) {
-        showError("Unable to finish request!");
+        showError(res.status);
         return;
     }
 

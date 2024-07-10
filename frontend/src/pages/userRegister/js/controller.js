@@ -18,7 +18,7 @@ const signup = async (username, department, role) => {
     })
 
     if (!res.ok) {
-        alert("Error!");
+        showError(res.code)
         return;
     }
 

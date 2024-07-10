@@ -40,6 +40,7 @@
     
     <script defer src="../mainPage/js/menuButton.js"></script>
     <script defer src="./js/controller.js"></script>
+    <script defer src="../../scripts/signout.js"></script>
     <title>Services</title>
   </head>
   <body>
@@ -91,8 +92,10 @@
         <div id="user-section">
           <img id="user-icon" src="../../resources/images/user.png" alt="" />
           <div id="logout">
-            <img id="signout-icon" src="../../resources/images/signout.png" alt="" />
-            <li><a href="login.html">Sign Out</a></li>
+            <button class="btn d-flex gap-3 align-items-center" id="signoutButton">
+              <img id="signout-icon" src="../../resources/images/signout.png" alt="" />
+              <li>Sign Out</li>
+            </button>
           </div>
         </div>
         <img id="menu-button" src="../../resources/images/menu.png" alt="">

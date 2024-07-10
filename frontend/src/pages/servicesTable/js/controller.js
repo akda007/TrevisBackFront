@@ -2,6 +2,9 @@ const session = JSON.parse(localStorage.getItem("sessionInfo"));
 const dataList = document.getElementById("dataList");
 const searchContainer = document.querySelector("#search-input");
 const currentPage = document.querySelector("#currentPage");
+const editName = document.querySelector("#edit-name")
+const editDesc = document.querySelector("#edit-desc")
+const editIntern = document.querySelector("#edit-intern")
 
 let maxPage = 1;
 let page = 1
@@ -14,7 +17,7 @@ const insertService = (service) => {
     const elementId = `collapse${service.id}`
 
     dataList.insertAdjacentHTML("beforeend", 
-        `<div class="accordion-item" item-id="${service.id}">
+        `<div class="accordion-item" item-id="${service.id}" item-name="${service.name}" item-desc="${service.description}" item-intern="${service.intern}">
             <h2 class="accordion-header">
             <button class="accordion-button ${firstElement ? "" : "collapsed"}" type="button" data-bs-toggle="collapse" data-bs-target="#${elementId}" aria-expanded="${firstElement}" aria-controls="${elementId}">
                 ${service.name}
@@ -117,7 +120,12 @@ const loadButtonEvents = () => {
         x.addEventListener("click", (e) => {
             e.stopPropagation()
             editId = e.currentTarget.getAttribute("item-id")
-            
+
+            const service = document.querySelector(`[item-id="${editId}"]`)
+
+            editName.value = service.getAttribute("item-name");
+            editDesc.value = service.getAttribute("item-desc")
+            editIntern.checked = service.getAttribute("item-intern") === "true";
         })
     })
 
@@ -147,9 +155,10 @@ const editService = async (id, name, desc, intern) => {
 }
 
 document.querySelector("#edit-submit").addEventListener("click", () => {
-    const name = document.querySelector("#edit-name")
-    const desc = document.querySelector("#edit-desc")
-    const intern = document.querySelector("#edit-intern")
+    
 
-    editService(editId, name.value, desc.value, intern.checked)
+    editService(editId, name.value, editDesc.value, editIntern.checked)
 });
+
+
+

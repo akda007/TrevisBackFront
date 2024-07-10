@@ -21,7 +21,7 @@ const update = async (password) => {
     });
 
     if (res.status != 200) {
-        alert("Error!");
+        showError("Password is too weak!");
         return;
     }
 
