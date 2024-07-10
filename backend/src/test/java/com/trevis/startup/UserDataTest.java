@@ -29,21 +29,28 @@ public class UserDataTest {
 
     @Test
     protected void testUserGetById() {
+        var payload = new UserDataCreationPayload("murylo", 1L, 2);
+        assertDoesNotThrow(() -> userDataService.create(payload));
         assertNotNull(userDataService.getById(1L));
         assertThrows(NotFoundException.class, () -> userDataService.getById(99999L));
     }
 
     @Test
     protected void testUserGetByUsername() {
+        var payload = new UserDataCreationPayload("murylo", 1L, 2);
+        assertDoesNotThrow(() -> userDataService.create(payload));
         assertNotNull(userDataService.getByUsername("murylo"));
         assertThrows(NotFoundException.class, () -> userDataService.getByUsername("paiDoNilton"));
     }
 
     @Test
     protected void testUserUpdate() {
-        var payload = new UserDataUpdatePayload("muryloNew", null, null, "Password1!");
+        var payloadCreation = new UserDataCreationPayload("murylo", 1L, 2);
+        assertDoesNotThrow(() -> userDataService.create(payloadCreation));
 
-        assertDoesNotThrow(() -> userDataService.updateUser(1L, payload));
+        var payloadUpdate = new UserDataUpdatePayload("muryloNew", null, null, "Password1!");
+
+        assertDoesNotThrow(() -> userDataService.updateUser(1L, payloadUpdate));
 
         var user = userDataService.getById(1L);
         assertEquals("muryloNew", user.getUsername());

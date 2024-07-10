@@ -22,7 +22,7 @@ public class UserDataServiceMock implements UserDataService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private List<UserData> userDataList = new ArrayList<UserData>();
+    private static final List<UserData> userDataList = new ArrayList<UserData>();
     private static Long currentId = 0L;
 
     @Override
